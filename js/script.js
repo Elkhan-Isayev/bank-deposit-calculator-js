@@ -17,7 +17,7 @@ function isValid() {
     monthlyReplenishment    = Number(document.getElementById('monthly-replenishment').value);       // ежемесячная пополнение
     interestRate            = Number(document.getElementById('interest-rate').value);               // проценты 
     depositTerm             = Number(document.getElementById('deposit-term').value);                // срок вклада
-    if(depositAmount > 0 && monthlyReplenishment >= 0 && (interestRate > 0 && interestRate < 100) && isInteger(depositTerm)) {
+    if(depositAmount > 0 && monthlyReplenishment >= 0 && (interestRate > 0 && interestRate < 100) && (isInteger(depositTerm) && depositTerm > 0)) {
         return true;
     }
     if(!(depositAmount > 0)) {
@@ -29,7 +29,7 @@ function isValid() {
     if(!(interestRate > 0 && interestRate < 100)) {
         errorList += `<li class="error-list-item">Неверный формат процентов</li>`;
     }
-    if(!isInteger(depositTerm)) {
+    if(!(isInteger(depositTerm) && depositTerm > 0)) {
         errorList += `<li class="error-list-item">Неверный формат срока вклада</li>`;
     }
     document.getElementById('error-list').innerHTML = errorList;
