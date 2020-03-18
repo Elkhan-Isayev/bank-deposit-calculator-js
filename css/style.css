@@ -1,0 +1,102 @@
+body {
+    background-image: url("../assets/tim-evans-Uf-c4u1usFQ-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* padding-top: 10vh; */
+    /* padding-bottom: 10vh; */
+    font-family: 'Roboto Mono', monospace, Arial, Helvetica, sans-serif;
+}
+
+.main-wrapper {
+    padding: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    width: 30%;
+    background-color: #fcf8e8;
+    border: 1px solid white;
+    border-radius: 10px;
+    color:black;
+
+
+    margin-top: 25vh;
+    /* margin-bottom: auto; */
+}
+
+header h1 {
+    text-align: center;
+}
+
+header h2 {
+    font-size: 70%;
+}
+
+.star {
+    font-size: 80%;
+    color: red;
+}
+
+.header-via-input {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.input-header {
+    font-size: 60%;
+}
+
+input {
+    font-size: 60%;
+    border-radius: 5px;
+    border-style: none;
+    padding: 5px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+footer {
+    margin-top: 5%;
+}
+
+.footer-button-via-copyright {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.button-style {
+    color: #ffffff;
+    border-style: none;
+    background-color: green;
+    border-radius: 5px; 
+    padding: 5px 10px;
+    
+}
+
+.button-style:active {
+    transform: translateY(2px);
+}
+
+.copyright-year {
+    font-size: 75%;
+}
+
+.error-list {
+    font-size:  75%;
+}
+
+.error-list-item {
+    color: red;
+    font-size: 75%;
+}
