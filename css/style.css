@@ -2,8 +2,6 @@ body {
     background-image: url("../assets/tim-evans-Uf-c4u1usFQ-unsplash.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    /* padding-top: 10vh; */
-    /* padding-bottom: 10vh; */
     font-family: 'Roboto Mono', monospace, Arial, Helvetica, sans-serif;
     height: 100%;
 }
@@ -12,16 +10,12 @@ body {
     padding: 1%;
     margin-left: auto;
     margin-right: auto;
-    
     width: 30%;
     background-color: #fcf8e8;
     border: 1px solid white;
     border-radius: 10px;
     color:black;
-
-
     margin-top: 25vh;
-    /* margin-bottom: auto; */
 }
 
 header h1 {
@@ -60,7 +54,6 @@ header h2 {
 }
 
 input {
-    /* display: inline-block; */
     font-size: 60%;
     border-radius: 5px;
     border-style: none;
