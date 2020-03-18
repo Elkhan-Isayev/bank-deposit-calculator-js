@@ -2,6 +2,22 @@ let depositAmount;
 let monthlyReplenishment;
 let interestRate;
 let depositTerm;
+let time = 30;
+
+
+function changeTime() {
+    time = document.getElementById('option-select-list');
+    time = time.options[document.getElementById('option-select-list').selectedIndex].value; 
+    if(time == "quarterly") {
+        time = 90;
+    }
+    else if(time == "perYear") {
+        time = 360;
+    }
+    else if(time == "perMonth") {
+        time = 30;
+    }
+}
 
 function isInteger(number) {
     if(number % 1 == 0) {
@@ -38,13 +54,33 @@ function isValid() {
 
 function calculate() {
     if(isValid()) {
-        depositTerm = Math.floor(depositTerm / 30);
-        for(let i = 0; i < depositTerm; i++) {
-            depositAmount += depositAmount * ((interestRate / 12) / 100);
-            depositAmount += monthlyReplenishment;
+        if(time == 30) {
+            depositTerm = Math.floor(depositTerm / 30);
+            for(let i = 0; i < depositTerm; i++) {
+                depositAmount += depositAmount * ((interestRate / 12) / 100);
+                depositAmount += monthlyReplenishment;
+            }
+            depositAmount = Math.round(depositAmount);
+            alert(depositAmount);
         }
-        depositAmount = Math.round(depositAmount);
-        alert(depositAmount);
+        else if(time == 90) {
+            depositTerm = Math.floor(depositTerm / 90);
+            for(let i = 0; i < depositTerm; i++) {
+                depositAmount += depositAmount * ((interestRate / 4) / 100);
+                depositAmount += monthlyReplenishment;
+            }
+            depositAmount = Math.round(depositAmount);
+            alert(depositAmount);
+        }
+        else if(time == 360) {
+            depositTerm = Math.floor(depositTerm / 90);
+            for(let i = 0; i < depositTerm; i++) {
+                depositAmount += depositAmount * ((interestRate / 1) / 100);
+                depositAmount += monthlyReplenishment;
+            }
+            depositAmount = Math.round(depositAmount);
+            alert(depositAmount);   
+        }
     }
     else {
         console.log('critical error');
@@ -53,6 +89,8 @@ function calculate() {
     }
 }
 
+
+document.getElementById('option-select-list').addEventListener('change', changeTime);
 document.getElementById('calculate-button').addEventListener('click', calculate);
 
 // console.log(depositAmount);

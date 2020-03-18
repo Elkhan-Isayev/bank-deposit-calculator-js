@@ -5,6 +5,7 @@ body {
     /* padding-top: 10vh; */
     /* padding-bottom: 10vh; */
     font-family: 'Roboto Mono', monospace, Arial, Helvetica, sans-serif;
+    height: 100%;
 }
 
 .main-wrapper {
@@ -44,6 +45,13 @@ header h2 {
 
 .input-header {
     font-size: 60%;
+}
+
+.option-select-list {
+    border-radius: 5px;
+    border-style: none;
+    padding: 5px;
+    font-size: 95%;
 }
 
 input {

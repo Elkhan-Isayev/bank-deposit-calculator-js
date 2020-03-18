@@ -29,7 +29,15 @@
                 
                     <div class="header-via-input">
                         <div>
-                            <p class="input-header">Сумма ежемесячного пополнения &#8381;<span class="star"><sup>&#9733;</sup></span></p>
+                            <p class="input-header">
+                                Сумма
+                                <select class="option-select-list" id="option-select-list">
+                                    <option value="perMonth" selected>ежемесячного</option> 
+                                    <option value="quarterly">eжеквартального</option>
+                                    <option value="perYear">ежегодного</option>
+                                </select> пополнения &#8381;
+                                <span class="star"><sup>&#9733;</sup></span>
+                            </p>
                         </div>
                         <div>
                             <input type="number" required value="0" id="monthly-replenishment">
