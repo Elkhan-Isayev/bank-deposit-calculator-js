@@ -1,12 +1,6 @@
-let depositAmount;
-let monthlyReplenishment;
-let interestRate;
-let depositTerm;
-let time = 30;
-
-
 function changeTime() {
-    time = document.getElementById('option-select-list');
+    "use strict";
+    let time = document.getElementById('option-select-list');
     time = time.options[document.getElementById('option-select-list').selectedIndex].value; 
     if(time == "quarterly") {
         time = 90;
@@ -17,6 +11,7 @@ function changeTime() {
     else if(time == "perMonth") {
         time = 30;
     }
+    return time;
 }
 
 function isInteger(number) {
@@ -26,13 +21,9 @@ function isInteger(number) {
     return false;
 }
 
-function isValid() {
+function isValid(depositAmount, monthlyReplenishment, interestRate, depositTerm) {
     let errorList = ``;
     document.getElementById('error-list').innerHTML = errorList;
-    depositAmount           = Number(document.getElementById('deposit-amount').value);              // начальная сумма 
-    monthlyReplenishment    = Number(document.getElementById('monthly-replenishment').value);       // ежемесячная пополнение
-    interestRate            = Number(document.getElementById('interest-rate').value);               // проценты 
-    depositTerm             = Number(document.getElementById('deposit-term').value);                // срок вклада
     if(depositAmount > 0 && monthlyReplenishment >= 0 && (interestRate > 0 && interestRate < 100) && (isInteger(depositTerm) && depositTerm > 0)) {
         return true;
     }
@@ -52,43 +43,51 @@ function isValid() {
     return false;
 }
 
-function calculate() {
-    if(isValid()) {
-        if(time == 30) {
-            depositTerm = Math.floor(depositTerm / 30);
-            for(let i = 0; i < depositTerm; i++) {
-                depositAmount += depositAmount * ((interestRate / 12) / 100);
-                depositAmount += monthlyReplenishment;
-            }
-            depositAmount = Math.round(depositAmount);
-            alert(depositAmount);
-        }
-        else if(time == 90) {
-            depositTerm = Math.floor(depositTerm / 90);
-            for(let i = 0; i < depositTerm; i++) {
-                depositAmount += depositAmount * ((interestRate / 4) / 100);
-                depositAmount += monthlyReplenishment;
-            }
-            depositAmount = Math.round(depositAmount);
-            alert(depositAmount);
-        }
-        else if(time == 360) {
-            depositTerm = Math.floor(depositTerm / 90);
-            for(let i = 0; i < depositTerm; i++) {
-                depositAmount += depositAmount * ((interestRate / 1) / 100);
-                depositAmount += monthlyReplenishment;
-            }
-            depositAmount = Math.round(depositAmount);
-            alert(depositAmount);   
+function calculate(time, depositAmount, monthlyReplenishment, interestRate, depositTerm) {
+    if(time == 30) {
+        depositTerm = Math.floor(depositTerm / 30);
+        for(let i = 0; i < depositTerm; i++) {
+            depositAmount += depositAmount * ((interestRate / 12) / 100);
+            depositAmount += monthlyReplenishment;
         }
     }
-    else {
-        console.log('critical error');
-        alert(NaN);
-        return NaN;
+    else if(time == 90) {
+        depositTerm = Math.floor(depositTerm / 90);
+        for(let i = 0; i < depositTerm; i++) {
+            depositAmount += depositAmount * ((interestRate / 4) / 100);
+            depositAmount += monthlyReplenishment;
+        }
     }
+    else if(time == 360) {
+        depositTerm = Math.floor(depositTerm / 360);
+        for(let i = 0; i < depositTerm; i++) {
+            depositAmount += depositAmount * ((interestRate / 1) / 100);
+            depositAmount += monthlyReplenishment;
+        }  
+    }
+    depositAmount = Math.round(depositAmount);
+    alert(depositAmount); 
+    return depositAmount;
 }
 
 
 document.getElementById('option-select-list').addEventListener('change', changeTime);
-document.getElementById('calculate-button').addEventListener('click', calculate);
+document.getElementById('calculate-button').addEventListener('click', function() {
+    depositAmount           = Number(document.getElementById('deposit-amount').value);              // начальная сумма 
+    monthlyReplenishment    = Number(document.getElementById('monthly-replenishment').value);       // ежемесячная пополнение
+    interestRate            = Number(document.getElementById('interest-rate').value);               // проценты 
+    depositTerm             = Number(document.getElementById('deposit-term').value);                // срок вклада
+    let time = changeTime();                                                                        // время пополнения
+
+    let result = NaN;
+    let validationResult = isValid(depositAmount, monthlyReplenishment, interestRate, depositTerm);
+
+    if(validationResult) {
+        result = calculate(time, depositAmount, monthlyReplenishment, interestRate, depositTerm);     // вызов функции вычисления
+    }
+    else {
+        console.log('critical error');
+        alert(result);
+    }
+    return result;
+});

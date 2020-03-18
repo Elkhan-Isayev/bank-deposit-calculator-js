@@ -54,11 +54,18 @@ header h2 {
     font-size: 95%;
 }
 
+.header-via-input div {
+    text-align: center;
+    margin: auto 0;
+}
+
 input {
+    /* display: inline-block; */
     font-size: 60%;
     border-radius: 5px;
     border-style: none;
     padding: 5px;
+    margin: auto auto;
 }
 
 /* Chrome, Safari, Edge, Opera */
