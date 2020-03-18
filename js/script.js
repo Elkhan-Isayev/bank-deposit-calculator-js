@@ -85,15 +85,10 @@ function calculate() {
     else {
         console.log('critical error');
         alert(NaN);
-        return;
+        return NaN;
     }
 }
 
 
 document.getElementById('option-select-list').addEventListener('change', changeTime);
 document.getElementById('calculate-button').addEventListener('click', calculate);
-
-// console.log(depositAmount);
-// console.log(monthlyReplenishment);
-// console.log(interestRate);
-// console.log(depositTerm);
