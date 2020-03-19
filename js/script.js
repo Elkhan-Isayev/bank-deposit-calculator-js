@@ -52,16 +52,28 @@ function calculate(time, depositAmount, monthlyReplenishment, interestRate, depo
         }
     }
     else if(time == 90) {
+        let percentTime = depositTerm;
+        
+        percentTime = Math.floor(percentTime / 30);
+        for(let i = 0; i < percentTime; i++) {
+            depositAmount += depositAmount * ((interestRate / 12) / 100);
+        }
+
         depositTerm = Math.floor(depositTerm / 90);
         for(let i = 0; i < depositTerm; i++) {
-            depositAmount += depositAmount * ((interestRate / 4) / 100);
             depositAmount += monthlyReplenishment;
         }
     }
     else if(time == 360) {
+        let percentTime = depositTerm;
+        
+        percentTime = Math.floor(percentTime / 30);
+        for(let i = 0; i < percentTime; i++) {
+            depositAmount += depositAmount * ((interestRate / 12) / 100);
+        }
+        
         depositTerm = Math.floor(depositTerm / 360);
         for(let i = 0; i < depositTerm; i++) {
-            depositAmount += depositAmount * ((interestRate / 1) / 100);
             depositAmount += monthlyReplenishment;
         }  
     }
