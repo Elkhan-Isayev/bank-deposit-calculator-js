@@ -44,6 +44,8 @@ function isValid(depositAmount, monthlyReplenishment, interestRate, depositTerm)
 }
 
 function calculate(time, depositAmount, monthlyReplenishment, interestRate, depositTerm) {
+    let percentTime = depositTerm;
+    percentTime = Math.floor(percentTime / 30);
     if(time == 30) {
         depositTerm = Math.floor(depositTerm / 30);
         for(let i = 0; i < depositTerm; i++) {
@@ -52,9 +54,6 @@ function calculate(time, depositAmount, monthlyReplenishment, interestRate, depo
         }
     }
     else if(time == 90) {
-        let percentTime = depositTerm;
-        
-        percentTime = Math.floor(percentTime / 30);
         for(let i = 0; i < percentTime; i++) {
             depositAmount += depositAmount * ((interestRate / 12) / 100);
         }
@@ -65,9 +64,6 @@ function calculate(time, depositAmount, monthlyReplenishment, interestRate, depo
         }
     }
     else if(time == 360) {
-        let percentTime = depositTerm;
-        
-        percentTime = Math.floor(percentTime / 30);
         for(let i = 0; i < percentTime; i++) {
             depositAmount += depositAmount * ((interestRate / 12) / 100);
         }
