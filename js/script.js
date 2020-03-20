@@ -46,28 +46,22 @@ function isValid(depositAmount, monthlyReplenishment, interestRate, depositTerm)
 function calculate(time, depositAmount, monthlyReplenishment, interestRate, depositTerm) {
     let percentTime = depositTerm;
     percentTime = Math.floor(percentTime / 30);
+    for(let i = 0; i < percentTime; i++) {
+        depositAmount += depositAmount * ((interestRate / 12) / 100);
+    }
     if(time == 30) {
         depositTerm = Math.floor(depositTerm / 30);
         for(let i = 0; i < depositTerm; i++) {
-            depositAmount += depositAmount * ((interestRate / 12) / 100);
             depositAmount += monthlyReplenishment;
         }
     }
     else if(time == 90) {
-        for(let i = 0; i < percentTime; i++) {
-            depositAmount += depositAmount * ((interestRate / 12) / 100);
-        }
-
         depositTerm = Math.floor(depositTerm / 90);
         for(let i = 0; i < depositTerm; i++) {
             depositAmount += monthlyReplenishment;
         }
     }
-    else if(time == 360) {
-        for(let i = 0; i < percentTime; i++) {
-            depositAmount += depositAmount * ((interestRate / 12) / 100);
-        }
-        
+    else if(time == 360) {        
         depositTerm = Math.floor(depositTerm / 360);
         for(let i = 0; i < depositTerm; i++) {
             depositAmount += monthlyReplenishment;
@@ -95,7 +89,7 @@ document.getElementById('calculate-button').addEventListener('click', function()
     }
     else {
         console.log('critical error');
-        alert(result);
+        // alert(result);
     }
     return result;
 });
